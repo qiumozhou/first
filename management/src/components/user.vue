@@ -1,12 +1,13 @@
 <template>
-  <div>注册页面</div>
+  <div></div>
 </template>
 <script>
 export default {
-  name: "register",
+  name: "user",
   data() {
     return {};
   }
 };
 </script>
-<style scoped></style>
+<style scoped>
+</style>
