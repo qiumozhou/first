@@ -1,9 +1,12 @@
 <template>
-  <div></div>
+  <div>设备管理</div>
 </template>
 <script>
 export default {
-  name: 404
+  name: "device",
+  data() {
+    return {};
+  }
 };
 </script>
 <style scoped>

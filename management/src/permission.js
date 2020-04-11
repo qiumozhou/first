@@ -1,7 +1,6 @@
 // import { LoadingBar } from "view-design"
 import router from "./router"
-import asyncRoutes from "./router"
-import store from "./store"
+import { asyncRoutes, commonRoutes } from "./router"
 import createRoutes from "@/utils/createRoutes"
 import { getDocumentTitle, resetTokenAndClearUser } from "./utils"
 
@@ -10,7 +9,7 @@ import { getDocumentTitle, resetTokenAndClearUser } from "./utils"
 // 判断是否是共有页面
 function isCommon(data) {
     var flag = false
-    asyncRoutes.options.routes.forEach((item, index) => {
+    commonRoutes.forEach((item, index) => {
         if (item.path == data) {
             flag = true
         }
@@ -20,7 +19,6 @@ function isCommon(data) {
 //  是否有菜单数据
 let hasMenus = false
 router.beforeEach(async (to, from, next) => {
-
     document.title = getDocumentTitle(to.meta.title)
     // LoadingBar.start()
     localStorage.setItem("token", "111")
@@ -34,12 +32,11 @@ router.beforeEach(async (to, from, next) => {
                 // 这里可以用 await 配合请求后台数据来生成路由
                 // const data = await axios.get('xxx')
                 // const routes = createRoutes(data)
-                const routes = createRoutes(store.state.menuItems)
+                const routes = createRoutes(asyncRoutes)
                 // 动态添加路由
-                console.log(111, routes)
                 router.addRoutes(routes)
                 hasMenus = true
-                next()
+                next("/index")
 
             } catch (error) {
                 resetTokenAndClearUser()

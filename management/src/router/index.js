@@ -5,22 +5,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-const commonRoutes = [
-  // {
-  //   path: "/",
-  //   name: "index",
-  //   meta: { title: "主页" },
-  //   component: () => import("../components/index.vue"),
-  //   children: [
-  //     {
-  //       path: "/user",
-  //       name: "user",
-  //       meta: { title: "用户管理" },
-  //       component: () => import("../components/user.vue")
-  //     }
-
-  //   ]
-  // },
+export const commonRoutes = [
   {
     path: "/login",
     name: "login",
@@ -32,10 +17,10 @@ const commonRoutes = [
     meta: { title: "注册" },
     component: () => import("../components/register.vue")
   }, {
-    path: "/404",
-    name: "404",
-    meta: { title: "404" },
-    component: () => import("../components/404.vue")
+    path: "/forbidden",
+    name: "forbidden",
+    meta: { title: "forbidden" },
+    component: () => import("../components/forbidden.vue")
 
   }
 
@@ -53,7 +38,13 @@ export const asyncRoutes = [
         name: "user",
         meta: { title: "用户管理" },
         component: () => import("../components/user.vue")
-      }
+      },
+      {
+        path: "/device",
+        name: "device",
+        meta: { title: "设备管理" },
+        component: () => import("../components/device.vue")
+      },
 
     ]
   }

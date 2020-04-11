@@ -5,15 +5,11 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
-        menuItems: [
-            {
-                name: "user",
-            }
-        ]
+        menuList: []
     },
     mutations: {
-        setMenu(state, items) {
-            state.menuItems = [...items]
+        setMenu(state, item) {
+            state.menuList = item
         }
     }
 
