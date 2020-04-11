@@ -22,7 +22,14 @@
           </el-col>
         </el-row>
       </el-aside>
-      <router-view />
+      <el-container>
+        <el-header>Header</el-header>
+        <el-main>
+          <router-view />
+        </el-main>
+
+        <el-footer>Footer</el-footer>
+      </el-container>
     </el-container>
   </div>
 </template>
@@ -71,5 +78,18 @@ a {
   position: absolute;
   top: 18px;
   left: 60px;
+}
+.el-header,
+.el-footer {
+  background-color: #b3c0d1;
+  color: #333;
+  text-align: center;
+  line-height: 60px;
+}
+.el-main {
+  background-color: #e9eef3;
+  color: #333;
+  text-align: center;
+  line-height: 160px;
 }
 </style>
