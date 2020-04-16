@@ -40,6 +40,12 @@ export const asyncRoutes = [
         component: () => import("../components/user.vue")
       },
       {
+        path: "/permission",
+        name: "permission",
+        meta: { title: "权限管理" },
+        component: () => import("../components/permission.vue")
+      },
+      {
         path: "/device",
         name: "device",
         meta: { title: "设备管理" },
