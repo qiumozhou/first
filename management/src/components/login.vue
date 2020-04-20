@@ -1,72 +1,113 @@
 <template>
-  <div class="container">
-    <div class="login">
-      <el-form
-        :model="ruleForm"
-        status-icon
-        ref="ruleForm"
-        label-width="130px"
-        class="demo-ruleForm"
-      >
-        <el-form-item label="帐号">
-          <el-input type="text" v-model="ruleForm.pass" autocomplete="off"></el-input>
+  <div class="login-wrap" :style="bgImg">
+    <div class="ms-login">
+      <div class="ms-title">后台管理系统</div>
+      <el-form :model="param" :rules="rules" ref="login" label-width="0px" class="ms-content">
+        <el-form-item prop="username">
+          <el-input v-model="param.username" placeholder="username">
+            <el-button slot="prepend" class="iconfont el-aliuser"></el-button>
+          </el-input>
         </el-form-item>
-        <el-form-item label="密码">
-          <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
+        <el-form-item prop="password">
+          <el-input
+            type="password"
+            placeholder="password"
+            v-model="param.password"
+            @keyup.enter.native="submitForm()"
+          >
+            <el-button slot="prepend" class="iconfont el-alipassword"></el-button>
+          </el-input>
         </el-form-item>
-
-        <el-form-item class="tijiao">
-          <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
-        </el-form-item>
+        <div class="login-btn">
+          <el-button type="primary" @click="submitForm()">登录</el-button>
+        </div>
+        <p class="login-tips">Tips : 用户名和密码随便填。</p>
       </el-form>
     </div>
   </div>
 </template>
+
 <script>
+import defaultImg from "../assets/login-bg.jpg";
 export default {
-  name: "login",
-  data() {
+  data: function() {
     return {
-      ruleForm: {
-        pass: "",
-        checkPass: "",
-        age: ""
+      bgImg: {
+        backgroundImage: "url(" + defaultImg + ")"
       },
+      param: {
+        username: "admin",
+        password: "123123"
+      },
+      rules: {
+        username: [
+          { required: true, message: "请输入用户名", trigger: "blur" }
+        ],
+        password: [{ required: true, message: "请输入密码", trigger: "blur" }]
+      }
     };
   },
   methods: {
+    submitForm() {
+      this.$refs.login.validate(valid => {
+        if (valid) {
+          this.$message.success("登录成功");
+          localStorage.setItem("ms_username", this.param.username);
+          this.$router.push("/");
+        } else {
+          this.$message.error("请输入账号和密码");
+          return false;
+        }
+      });
+    }
   }
 };
 </script>
 
 <style scoped>
-.tijiao {
-  margin: 0 auto;
+.login-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
 }
-.el-form-item {
-  width: 300px;
-  margin-top: 40px;
+.ms-title {
+  width: 100%;
+  line-height: 50px;
+  text-align: center;
+  font-size: 20px;
+  color: #fff;
+  border-bottom: 1px solid #ddd;
 }
-
-.el-input {
-  width: 200px;
-  /* margin: 0 auto; */
-}
-.login {
+.ms-login {
   position: absolute;
   left: 50%;
   top: 50%;
-  margin-left: -225px;
-  margin-top: -150px;
-  width: 450px;
-  height: 300px;
-  background-color: rgba(0, 0, 0, 0.5);
+  width: 350px;
+  margin: -190px 0 0 -175px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.3);
+  overflow: hidden;
 }
-.container {
+.ms-content {
+  padding: 30px 30px;
+}
+.login-btn {
+  text-align: center;
+}
+.login-btn button {
   width: 100%;
-  height: 100%;
-  background-image: url(../assets/login.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
+  height: 36px;
+  margin-bottom: 10px;
+}
+.login-tips {
+  font-size: 12px;
+  line-height: 30px;
+  color: #fff;
+}
+.iconfont{
+  
+  width: 40px;
+  margin-left:-25px
 }
 </style>

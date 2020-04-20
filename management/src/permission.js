@@ -19,8 +19,7 @@ function isCommon(data) {
 //  是否有菜单数据
 let hasMenus = false
 router.beforeEach(async (to, from, next) => {
-    document.title = getDocumentTitle(to.meta.title)
-    // LoadingBar.start()
+    // document.title = getDocumentTitle(to.meta.title)
     localStorage.setItem("token", "111")
     if (localStorage.getItem("token")) {
         if (isCommon(to.path)) {
@@ -36,7 +35,7 @@ router.beforeEach(async (to, from, next) => {
                 // 动态添加路由
                 router.addRoutes(routes)
                 hasMenus = true
-                next("/index")
+                next("/home")
 
             } catch (error) {
                 resetTokenAndClearUser()

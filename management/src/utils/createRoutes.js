@@ -26,7 +26,7 @@ export default function createRoutes(data) {
 }
 
 function generateRoutes(children, item) {
-    let pageList = ['user', "device", "permission"]
+    let pageList = ['user', "device", "permission", "home"]
     if (pageList.indexOf(item.name) != -1) {
         children.push(item)
 

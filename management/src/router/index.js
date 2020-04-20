@@ -34,21 +34,27 @@ export const asyncRoutes = [
     component: () => import("../components/index.vue"),
     children: [
       {
+        path: "/home",
+        name: "home",
+        meta: { title: "首页",icon:"el-aliiconindexsel" },
+        component: () => import("../components/home.vue")
+      },
+      {
         path: "/user",
         name: "user",
-        meta: { title: "用户管理" },
+        meta: { title: "用户管理",icon:"el-aliUSER" },
         component: () => import("../components/user.vue")
       },
       {
         path: "/permission",
         name: "permission",
-        meta: { title: "权限管理" },
+        meta: { title: "权限管理" ,icon:"el-aliquanxian"},
         component: () => import("../components/permission.vue")
       },
       {
         path: "/device",
         name: "device",
-        meta: { title: "设备管理" },
+        meta: { title: "其他" ,icon:"el-aliother"},
         component: () => import("../components/device.vue")
       },
 
